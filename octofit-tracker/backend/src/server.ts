@@ -29,3 +29,4 @@ app.use((error: unknown, _request: Request, response: Response, _next: NextFunct
 app.listen(port, () => {
   console.log(`OctoFit API listening on port ${port}`);
 });
+// Env environment configured for Codespaces and Localhost
