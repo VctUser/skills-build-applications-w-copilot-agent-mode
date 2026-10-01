@@ -109,3 +109,11 @@ code {
   padding: 4px 8px;
   background: var(--code-bg);
 }
+
+:root { font-family: 'Avenir Next', Avenir, 'Segoe UI', sans-serif; color: #34443b; background: #f4f6f4; font-synthesis: none; text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-weight: 400; }
+* { box-sizing: border-box; }
+body { min-width: 320px; min-height: 100vh; margin: 0; }
+#root { width: 100%; max-width: none; min-height: 100vh; margin: 0; border: 0; text-align: left; }
+h1 { font-size: inherit; letter-spacing: 0; }
+button, a { -webkit-tap-highlight-color: transparent; }
+::selection { color: #173a29; background: #cdebd5; }
