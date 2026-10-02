@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
-
-const API_BASE_URL = import.meta.env.VITE_API_URL || ''
+import { getApiUrl } from '../api.js'
 
 function Teams() {
   const [teams, setTeams] = useState([])
@@ -8,7 +7,7 @@ function Teams() {
 
   useEffect(() => {
     let active = true
-    fetch(`${API_BASE_URL}/api/teams/`)
+    fetch(getApiUrl('teams'))
       .then((response) => {
         if (!response.ok) throw new Error('Teams could not be loaded.')
         return response.json()

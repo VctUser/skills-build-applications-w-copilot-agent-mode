@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
-
-const API_BASE_URL = import.meta.env.VITE_API_URL || ''
+import { getApiUrl } from '../api.js'
 
 function displayUser(user) {
   if (!user) return 'Unknown athlete'
@@ -14,7 +13,7 @@ function Activities() {
 
   useEffect(() => {
     let active = true
-    fetch(`${API_BASE_URL}/api/activities/`)
+    fetch(getApiUrl('activities'))
       .then((response) => {
         if (!response.ok) throw new Error('Activities could not be loaded.')
         return response.json()
