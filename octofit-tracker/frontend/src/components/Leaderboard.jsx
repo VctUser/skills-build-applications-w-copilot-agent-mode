@@ -1,5 +1,8 @@
 import { useEffect, useState } from 'react'
-import { getApiUrl } from '../api.js'
+
+const apiUrl = import.meta.env.VITE_CODESPACE_NAME
+  ? `https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api/leaderboard/`
+  : 'http://localhost:8000/api/leaderboard/'
 
 function displayUser(user) {
   if (!user) return 'Unknown athlete'
@@ -13,7 +16,7 @@ function Leaderboard() {
 
   useEffect(() => {
     let active = true
-    fetch(getApiUrl('leaderboard'))
+    fetch(apiUrl)
       .then((response) => {
         if (!response.ok) throw new Error('Leaderboard could not be loaded.')
         return response.json()

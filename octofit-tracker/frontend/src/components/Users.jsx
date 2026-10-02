@@ -1,5 +1,16 @@
 import { useEffect, useState } from 'react'
-import { getApiUrl, getResponseItems } from '../api.js'
+
+const apiUrl = import.meta.env.VITE_CODESPACE_NAME
+  ? `https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api/users/`
+  : 'http://localhost:8000/api/users/'
+
+function getResponseItems(response) {
+  if (Array.isArray(response)) return response
+  if (!response || typeof response !== 'object') return []
+
+  const candidates = [response.results, response.data, response.items, response.docs]
+  return candidates.find(Array.isArray) || []
+}
 
 function Users() {
   const [users, setUsers] = useState([])
@@ -7,7 +18,7 @@ function Users() {
 
   useEffect(() => {
     let active = true
-    fetch(getApiUrl('users'))
+    fetch(apiUrl)
       .then((response) => {
         if (!response.ok) throw new Error('Users could not be loaded.')
         return response.json()

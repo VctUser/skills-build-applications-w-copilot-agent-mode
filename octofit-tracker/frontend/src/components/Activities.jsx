@@ -1,5 +1,8 @@
 import { useEffect, useState } from 'react'
-import { getApiUrl } from '../api.js'
+
+const apiUrl = import.meta.env.VITE_CODESPACE_NAME
+  ? `https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api/activities/`
+  : 'http://localhost:8000/api/activities/'
 
 function displayUser(user) {
   if (!user) return 'Unknown athlete'
@@ -13,7 +16,7 @@ function Activities() {
 
   useEffect(() => {
     let active = true
-    fetch(getApiUrl('activities'))
+    fetch(apiUrl)
       .then((response) => {
         if (!response.ok) throw new Error('Activities could not be loaded.')
         return response.json()
